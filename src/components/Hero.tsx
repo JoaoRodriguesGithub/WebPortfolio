@@ -68,6 +68,14 @@ const Img = styled.img`
  right: 0;
  left: 0;
  margin: auto;
+ animation: animate 2s infinite ease alternate;
+
+@keyframes animate {
+  to{
+    transform: translateY(20px)
+  }
+}
+
 `;
 
 const Hero = () => {
