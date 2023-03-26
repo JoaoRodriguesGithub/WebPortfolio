@@ -1,4 +1,8 @@
+import React, { useRef, useState } from "react";
+import { FormEvent } from "react";
+import emailjs from "@emailjs/browser";
 import styled from "styled-components";
+import Map from "./Map";
 
 const Section = styled.div`
   height: 100vh;
@@ -60,19 +64,52 @@ const Right = styled.div`
 `;
 
 const Contact = () => {
+  const ref = useRef<HTMLFormElement>(null);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_SERVICE_ID!,
+        process.env.REACT_APP_TEMPLATE_ID!,
+        ref.current!,
+        process.env.REACT_APP_PUBLIC_KEY!
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setSuccess(true);
+        },
+        (error) => {
+          console.log(error.text);
+          setSuccess(false);
+        }
+      );
+  };
+
   return (
     <Section>
       <Container>
         <Left>
-          <Form>
+          <Form ref={ref} onSubmit={handleSubmit}>
             <Title>Contact Us</Title>
-            <Input placeholder="Name"></Input>
-            <Input placeholder="Email"></Input>
-            <TextArea placeholder="Write your message" rows={10}></TextArea>
-            <Button>Send</Button>
+            <Input placeholder="Name" name="name"></Input>
+            <Input placeholder="Email" name="email"></Input>
+            <TextArea
+              placeholder="Write your message"
+              name="message"
+              rows={10}
+            ></TextArea>
+            <Button type="submit">Send</Button>
+            {success &&
+              "Your message has been sent. I'll get back to you soon!"}
           </Form>
         </Left>
-        <Right></Right>
+        <Right>
+          <Map />
+        </Right>
       </Container>
     </Section>
   );
