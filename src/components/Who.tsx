@@ -80,10 +80,10 @@ const Who = () => {
       <Container>
         <Left>
           <Canvas camera={{ position: [5, 5, 5], fov: 25 }}>
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[3, 2, 1]} />
-              <Cube />
-              <OrbitControls enableZoom={false} autoRotate />
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[3, 2, 1]} />
+            <Cube />
+            <OrbitControls enableZoom={false} autoRotate />
           </Canvas>
         </Left>
         <Right>
