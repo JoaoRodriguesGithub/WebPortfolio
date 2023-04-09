@@ -25,7 +25,7 @@ type GLTFResult = GLTF & {
 };
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/chair-transformed.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF("./chair-transformed.glb") as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -56,4 +56,4 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/chair-transformed.glb");
+useGLTF.preload("./chair-transformed.glb");

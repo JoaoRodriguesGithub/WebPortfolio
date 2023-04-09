@@ -23,7 +23,7 @@ type GLTFResult = GLTF & {
 };
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/mac-transformed.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF("./mac-transformed.glb") as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group position={[0.12, 0.01, 0]}>
@@ -44,4 +44,4 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/mac-transformed.glb");
+useGLTF.preload("./mac-transformed.glb");

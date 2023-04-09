@@ -21,7 +21,7 @@ type GLTFResult = GLTF & {
 }
 
 export function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/reactlogo-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('./reactlogo-transformed.glb') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <group scale={0.01}>
@@ -31,4 +31,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('/reactlogo-transformed.glb')
+useGLTF.preload('./reactlogo-transformed.glb')

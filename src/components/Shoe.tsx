@@ -21,7 +21,7 @@ type GLTFResult = GLTF & {
 };
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/shoe-transformed.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF("./shoe-transformed.glb") as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -33,4 +33,4 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/shoe-transformed.glb");
+useGLTF.preload("./shoe-transformed.glb");
