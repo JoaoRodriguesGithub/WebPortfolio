@@ -35,6 +35,10 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+      - name: Load environment variables
+        uses: jdotenv/action@v1
+        with:
+          path: .env
       - name: Install dependencies
         run: npm install
       - name: Build
@@ -49,3 +53,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          env:
+            REACT_APP_SERVICE_ID: ${{ secrets.REACT_APP_SERVICE_ID }}
+            REACT_APP_TEMPLATE_ID: ${{ secrets.REACT_APP_TEMPLATE_ID }}
+            REACT_APP_PUBLIC_KEY: ${{ secrets.REACT_APP_PUBLIC_KEY }}
+            
